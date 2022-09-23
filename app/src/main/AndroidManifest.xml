@@ -18,7 +18,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.amphibians">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
     <application
+        android:name=".AmphibiansApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"

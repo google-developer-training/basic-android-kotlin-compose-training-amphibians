@@ -14,21 +14,18 @@
  * limitations under the License.
  */
 
-package com.example.amphibians
+package com.example.amphibians.model
 
-import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import com.example.amphibians.ui.AmphibiansApp
-import com.example.amphibians.ui.theme.AmphibiansTheme
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
-class MainActivity : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContent {
-            AmphibiansTheme {
-                AmphibiansApp()
-            }
-        }
-    }
-}
+/**
+ * Data class that defines an amphibian which includes a name, type, description, and image URL.
+ */
+@Serializable
+data class Amphibian(
+    val name: String,
+    val type: String,
+    val description: String,
+    @SerialName("img_src") val imgSrc: String
+)

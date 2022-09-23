@@ -14,21 +14,15 @@
  * limitations under the License.
  */
 
-package com.example.amphibians
+package com.example.amphibians.network
 
-import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import com.example.amphibians.ui.AmphibiansApp
-import com.example.amphibians.ui.theme.AmphibiansTheme
+import com.example.amphibians.model.Amphibian
+import retrofit2.http.GET
 
-class MainActivity : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContent {
-            AmphibiansTheme {
-                AmphibiansApp()
-            }
-        }
-    }
+/**
+ * A public interface that exposes the [getAmphibians] method
+ */
+interface AmphibiansApiService {
+    @GET("amphibians")
+    suspend fun getAmphibians(): List<Amphibian>
 }

@@ -16,19 +16,15 @@
 
 package com.example.amphibians
 
-import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import com.example.amphibians.ui.AmphibiansApp
-import com.example.amphibians.ui.theme.AmphibiansTheme
+import android.app.Application
+import com.example.amphibians.data.AppContainer
+import com.example.amphibians.data.DefaultAppContainer
 
-class MainActivity : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContent {
-            AmphibiansTheme {
-                AmphibiansApp()
-            }
-        }
+class AmphibiansApplication : Application() {
+    /** AppContainer instance used by the rest of classes to obtain dependencies */
+    lateinit var container: AppContainer
+    override fun onCreate() {
+        super.onCreate()
+        container = DefaultAppContainer()
     }
 }

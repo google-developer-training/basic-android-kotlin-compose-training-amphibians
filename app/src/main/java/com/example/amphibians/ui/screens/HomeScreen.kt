@@ -17,7 +17,6 @@
 package com.example.amphibians.ui.screens
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -28,6 +27,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Button
 import androidx.compose.material.Card
 import androidx.compose.material.MaterialTheme
@@ -45,7 +45,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
-import coil.size.Precision
 import com.example.amphibians.R
 import com.example.amphibians.model.Amphibian
 import com.example.amphibians.ui.theme.AmphibiansTheme
@@ -99,11 +98,9 @@ fun ErrorScreen(retryAction: () -> Unit, modifier: Modifier = Modifier) {
 
 @Composable
 fun AmphibianCard(amphibian: Amphibian, modifier: Modifier = Modifier) {
-    Card(modifier = modifier
-        .padding(4.dp)
-        .fillMaxWidth()
-        .aspectRatio(1f),
+    Card(modifier = modifier.fillMaxWidth(),
         elevation = 8.dp,
+        shape = RoundedCornerShape(8.dp)
     ) {
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
             Text(
@@ -111,25 +108,22 @@ fun AmphibianCard(amphibian: Amphibian, modifier: Modifier = Modifier) {
                 style = MaterialTheme.typography.h6,
                 fontWeight = FontWeight.Bold,
                 textAlign = TextAlign.Center,
-                modifier = Modifier
-                    .fillMaxWidth(1f)
-                    .padding(top = 16.dp)
+                modifier = Modifier.padding(top = 16.dp)
             )
             Text(
                 text = amphibian.description,
                 style = MaterialTheme.typography.body1,
                 textAlign = TextAlign.Justify,
-                modifier = Modifier.padding(horizontal = 16.dp, vertical = 4.dp)
+                modifier = Modifier.padding(start = 16.dp, end = 16.dp, top = 8.dp, bottom = 16.dp)
             )
             AsyncImage(
+                modifier = Modifier.fillMaxWidth(),
                 model = ImageRequest.Builder(context = LocalContext.current)
-                    .precision(Precision.EXACT)
-                    .size(1720, 1000)
                     .data(amphibian.imgSrc)
                     .crossfade(true)
                     .build(),
                 contentDescription = null,
-                contentScale = ContentScale.Crop,
+                contentScale = ContentScale.FillWidth,
                 error = painterResource(id = R.drawable.ic_broken_image),
                 placeholder = painterResource(id = R.drawable.loading_img)
             )
@@ -141,7 +135,8 @@ fun AmphibianCard(amphibian: Amphibian, modifier: Modifier = Modifier) {
 private fun AmphibiansListScreen(amphibians: List<Amphibian>, modifier: Modifier = Modifier) {
     LazyColumn(
         modifier = modifier.fillMaxWidth(),
-        contentPadding = PaddingValues(4.dp)
+        verticalArrangement = Arrangement.spacedBy(16.dp),
+        contentPadding = PaddingValues(16.dp)
     ) {
         items(
             items = amphibians,
@@ -182,7 +177,7 @@ fun AmphibiansListScreenPreview() {
                         " eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad" +
                         " minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip" +
                         " ex ea commodo consequat.",
-                imgSrc = "https://android-kotlin-fun-mars-server.web.app/images/blue-jeans-frog.png"
+                imgSrc = ""
             )
         }
         AmphibiansListScreen(mockData)

@@ -14,18 +14,19 @@
  * limitations under the License.
  */
 
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
-
-buildscript {
-    ext {
-        compose_compiler_version = '1.4.6'
-        lifecycle_version = '2.6.1'
-        retrofit2_version = '2.9.0'
+pluginManagement {
+    repositories {
+        google()
+        mavenCentral()
+        gradlePluginPortal()
     }
 }
-
-plugins {
-    id 'com.android.application' version '8.0.0' apply false
-    id 'com.android.library' version '8.0.0' apply false
-    id 'org.jetbrains.kotlin.android' version '1.8.20' apply false
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+    }
 }
+rootProject.name = "Amphibians"
+include(":app")

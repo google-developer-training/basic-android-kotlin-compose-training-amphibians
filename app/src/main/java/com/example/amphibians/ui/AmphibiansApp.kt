@@ -49,7 +49,7 @@ fun AmphibiansApp() {
         Surface(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(it),
+                .padding(top = it.calculateTopPadding()),
             color = MaterialTheme.colorScheme.background
         ) {
             val amphibiansViewModel: AmphibiansViewModel =

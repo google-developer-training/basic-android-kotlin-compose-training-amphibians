@@ -18,7 +18,6 @@ package com.example.amphibians.ui.screens
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
@@ -54,12 +53,23 @@ import com.example.amphibians.ui.theme.AmphibiansTheme
 fun HomeScreen(
     amphibiansUiState: AmphibiansUiState,
     retryAction: () -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    contentPadding: PaddingValues = PaddingValues(0.dp)
 ) {
     when (amphibiansUiState) {
         is AmphibiansUiState.Loading -> LoadingScreen(modifier.fillMaxSize().size(200.dp))
         is AmphibiansUiState.Success ->
-            AmphibiansListScreen(amphibiansUiState.amphibians, modifier.fillMaxSize())
+            AmphibiansListScreen(
+                amphibians = amphibiansUiState.amphibians,
+                modifier = modifier
+                    .fillMaxSize()
+                    .padding(
+                        start = dimensionResource(R.dimen.padding_medium),
+                        top = dimensionResource(R.dimen.padding_medium),
+                        end = dimensionResource(R.dimen.padding_medium)
+                    ),
+                contentPadding = contentPadding
+            )
         else -> ErrorScreen(retryAction, modifier.fillMaxSize())
     }
 }
@@ -131,11 +141,15 @@ fun AmphibianCard(amphibian: Amphibian, modifier: Modifier = Modifier) {
 }
 
 @Composable
-private fun AmphibiansListScreen(amphibians: List<Amphibian>, modifier: Modifier = Modifier) {
+private fun AmphibiansListScreen(
+    amphibians: List<Amphibian>,
+    modifier: Modifier = Modifier,
+    contentPadding: PaddingValues = PaddingValues(0.dp)
+) {
     LazyColumn(
         modifier = modifier,
-        verticalArrangement = Arrangement.spacedBy(24.dp),
-        contentPadding = PaddingValues(dimensionResource(R.dimen.padding_medium))
+        contentPadding = contentPadding,
+        verticalArrangement = Arrangement.spacedBy(24.dp)
     ) {
         items(
             items = amphibians,
@@ -152,7 +166,10 @@ private fun AmphibiansListScreen(amphibians: List<Amphibian>, modifier: Modifier
 @Composable
 fun LoadingScreenPreview() {
     AmphibiansTheme {
-        LoadingScreen(Modifier.fillMaxSize().size(200.dp))
+        LoadingScreen(
+            Modifier
+                .fillMaxSize()
+                .size(200.dp))
     }
 }
 

@@ -17,7 +17,6 @@
 package com.example.amphibians.ui
 
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
@@ -47,16 +46,15 @@ fun AmphibiansApp() {
         }
     ) {
         Surface(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(top = it.calculateTopPadding()),
+            modifier = Modifier.fillMaxSize(),
             color = MaterialTheme.colorScheme.background
         ) {
             val amphibiansViewModel: AmphibiansViewModel =
                 viewModel(factory = AmphibiansViewModel.Factory)
             HomeScreen(
                 amphibiansUiState = amphibiansViewModel.amphibiansUiState,
-                retryAction = amphibiansViewModel::getAmphibians
+                retryAction = amphibiansViewModel::getAmphibians,
+                contentPadding = it
             )
         }
     }

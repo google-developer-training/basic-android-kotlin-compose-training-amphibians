@@ -54,6 +54,7 @@ fun AmphibiansApp() {
             HomeScreen(
                 amphibiansUiState = amphibiansViewModel.amphibiansUiState,
                 retryAction = amphibiansViewModel::getAmphibians,
+                modifier = Modifier.fillMaxSize(),
                 contentPadding = it
             )
         }

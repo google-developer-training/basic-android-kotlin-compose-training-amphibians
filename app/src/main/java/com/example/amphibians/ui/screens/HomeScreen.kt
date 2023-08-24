@@ -57,12 +57,11 @@ fun HomeScreen(
     contentPadding: PaddingValues = PaddingValues(0.dp)
 ) {
     when (amphibiansUiState) {
-        is AmphibiansUiState.Loading -> LoadingScreen(modifier.fillMaxSize().size(200.dp))
+        is AmphibiansUiState.Loading -> LoadingScreen(modifier.size(200.dp))
         is AmphibiansUiState.Success ->
             AmphibiansListScreen(
                 amphibians = amphibiansUiState.amphibians,
                 modifier = modifier
-                    .fillMaxSize()
                     .padding(
                         start = dimensionResource(R.dimen.padding_medium),
                         top = dimensionResource(R.dimen.padding_medium),
@@ -70,7 +69,7 @@ fun HomeScreen(
                     ),
                 contentPadding = contentPadding
             )
-        else -> ErrorScreen(retryAction, modifier.fillMaxSize())
+        else -> ErrorScreen(retryAction, modifier)
     }
 }
 

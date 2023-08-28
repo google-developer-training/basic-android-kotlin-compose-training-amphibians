@@ -168,7 +168,8 @@ fun LoadingScreenPreview() {
         LoadingScreen(
             Modifier
                 .fillMaxSize()
-                .size(200.dp))
+                .size(200.dp)
+        )
     }
 }
 

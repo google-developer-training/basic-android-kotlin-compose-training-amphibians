@@ -40,7 +40,6 @@ class DefaultAppContainer : AppContainer {
     /**
      * Use the Retrofit builder to build a retrofit object using a kotlinx.serialization converter
      */
-    @kotlinx.serialization.ExperimentalSerializationApi
     private val retrofit: Retrofit = Retrofit.Builder()
         .addConverterFactory(Json.asConverterFactory("application/json".toMediaType()))
         .baseUrl(BASE_URL)
